@@ -1,63 +1,60 @@
 import 'package:flutter/material.dart';
+import 'search_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      backgroundColor: const Color(0xFF2E5F65), // Background color
+      backgroundColor: const Color(0xFF2E5F65),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0, // Removes shadow
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.white), // ☰ Menu Icon
-          onPressed: () {},
+        elevation: 0,
+        title: const Text(
+          "Garage EzWay",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.account_circle, color: Colors.white, size: 30), // User Profile Icon
+            icon: const Icon(Icons.account_circle, color: Colors.white, size: 30),
             onPressed: () {},
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // LOGO "Garage EzWay"
             const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                "Garage EzWay",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 30),
-
-            // Navigation Labels
+            // NAVIGATION LABELS
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text("Home", style: TextStyle(color: Colors.white, fontSize: 16)),
-                Text("My Session", style: TextStyle(color: Colors.white, fontSize: 16)),
-                Text("History", style: TextStyle(color: Colors.white, fontSize: 16)),
-                Text("Settings", style: TextStyle(color: Colors.white, fontSize: 16)),
+              children: [
+                _navItem("HOME"),
+                _divider(),
+                _navItem("MY SESSION"),
+                _divider(),
+                _navItem("HISTORY"),
+                _divider(),
+                _navItem("SETTINGS"),
               ],
             ),
-            const SizedBox(height: 20),
-
-            // Search Bar
+            const SizedBox(height: 40),
+            // SEARCH BAR
             Container(
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
-                borderRadius: BorderRadius.circular(10),
+                color: Colors.white.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(25),
               ),
               child: const TextField(
                 decoration: InputDecoration(
@@ -69,59 +66,261 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40),
+            // MY VEHICLE BOX
+            _vehicleBox(screenHeight),
 
-            // "My Vehicle" Box
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5), // 50% faded white box
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Stack(
-                children: [
-                  // "My Vehicle" Label (Top Left)
-                  const Positioned(
-                    top: 5,
-                    left: 5,
-                    child: Text(
-                      "My Vehicle",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+            const SizedBox(height: 30),
+            _reservationBox(),
+            const SizedBox(height: 30),
+            _reservationBox(),
+            const SizedBox(height: 30),
+            _reservationBox(),
 
-                  // Car Name (Bold, Centered)
-                  const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Car Name",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  // Edit Icon (Small, Top Right)
-                  Positioned(
-                    top: 5,
-                    right: 5,
-                    child: IconButton(
-                      icon: const Icon(Icons.edit, color: Colors.white, size: 20),
-                      onPressed: () {},
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const SizedBox(height: 20),
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: const Color(0xFF2E5F65),
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 10.0,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(icon: const Icon(Icons.home, color: Colors.white, size: 30), onPressed: () {}),
+              IconButton(icon: const Icon(Icons.directions_car, color: Colors.white, size: 30), onPressed: () {}),
+              IconButton(icon: const Icon(Icons.search, color: Colors.white, size: 30), onPressed: () {}),
+            ],
+          ),
         ),
       ),
     );
   }
+}
+
+Widget _navItem(String title) => Text(title, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold));
+Widget _divider() => Container(height: 20, width: 1, color: Colors.white.withOpacity(0.5));
+
+Widget _vehicleBox(double screenHeight) {
+  return Container(
+    height: screenHeight * 0.25 - 13,
+    width: double.infinity,
+    padding: const EdgeInsets.all(15),
+    decoration: BoxDecoration(
+      color: Colors.black.withOpacity(0.25),
+      borderRadius: BorderRadius.circular(15),
+    ),
+    child: Stack(
+      children: [
+        const Positioned(
+          top: 5,
+          left: 5,
+          child: Text(
+            "MY VEHICLE",
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        const Positioned(
+          top: 25,
+          left: 5,
+          child: Text(
+            "Car Name",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 35,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Positioned(
+          top: 5,
+          right: 5,
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: const Icon(Icons.edit, color: Colors.black87, size: 20),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 10,
+          right: 10,
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Text(
+                "SWITCH",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _reservationBox() {
+  return Column(
+    children: [
+      const Text(
+        "Reserve your favorite spot again!",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 19,
+          fontWeight: FontWeight.bold,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      const SizedBox(height: 15),
+      Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 79,
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 12.0, left: 10),
+                    child: Icon(Icons.local_parking, color: Colors.white, size: 35),
+                  ),
+                  const SizedBox(width: 12),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 9.0, top: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "6 October Parking",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                        Text(
+                          "Al Nahda Compound, Giza",
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 25),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 26.0, bottom: 13),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Distance",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        ".2km",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0, bottom: 13),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Text(
+                        "Price",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        "2\$/h",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0, bottom: 13),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFabdbe3),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 5,
+                    ),
+                    child: const Text(
+                      "Book Now  >",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
 }
