@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          "Garage EzWay",
+          "Garage EZway",
           style: TextStyle(
             color: Colors.white,
             fontSize: 30,
@@ -71,6 +71,25 @@ class HomePage extends StatelessWidget {
 
             const SizedBox(height: 30),
             _reservationBox(),
+
+            const Padding(
+              padding: EdgeInsets.only(top: 20,bottom:1,right:90),
+              child: Text(
+                "Nearest parking space !",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            const SizedBox(height: 15),
+            _buildReservationBox("Title 1", "Location 1", "Distance 1", "Price 1"),
+           const SizedBox(height: 15),
+            _buildReservationBox("Title 2", "Location 2", "Distance 2", "Price 2"),
+            const SizedBox(height: 15),
 
             const SizedBox(height: 20),
           ],
@@ -177,24 +196,29 @@ Widget _vehicleBox(double screenHeight) {
 }
 
 Widget _reservationBox() {
-  return Column(
-    children: [
-      const Text(
-        "Reserve your favorite spot again!",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 19,
-          fontWeight: FontWeight.bold,
-        ),
-        textAlign: TextAlign.center,
-      ),
-      const SizedBox(height: 15),
-      _buildReservationBox(),
-    ],
+  return Padding(
+  padding: const EdgeInsets.only(top: 1, bottom: 1),
+  child: Column(
+  children: [
+  const Text(
+  "Reserve your favorite spot again!",
+  style: TextStyle(
+  color: Colors.white,
+  fontSize: 19,
+  fontWeight: FontWeight.bold,
+  ),
+  textAlign: TextAlign.center,
+  ),
+  const SizedBox(height: 15),
+  _buildReservationBox("Title", "Location", "Distance", "Price"),
+  ],
+  ),
   );
+
 }
 
-Widget _buildReservationBox() {
+
+Widget _buildReservationBox(String title, String location, String distance, String price) {
   return Container(
     width: double.infinity,
     decoration: BoxDecoration(
@@ -223,19 +247,19 @@ Widget _buildReservationBox() {
                 padding: const EdgeInsets.only(left: 9.0, top: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      "6 October Parking",
-                      style: TextStyle(
+                      title,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 2),
+                    const SizedBox(height: 2),
                     Text(
-                      "Al Nahda Compound, Giza",
-                      style: TextStyle(
+                      location,
+                      style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 10,
                       ),
@@ -254,8 +278,8 @@ Widget _buildReservationBox() {
               padding: const EdgeInsets.only(left: 26.0, bottom: 13),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "Distance",
                     style: TextStyle(
                       color: Colors.white,
@@ -263,10 +287,10 @@ Widget _buildReservationBox() {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
-                    ".2km",
-                    style: TextStyle(
+                    distance,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,
                     ),
@@ -278,8 +302,8 @@ Widget _buildReservationBox() {
               padding: const EdgeInsets.only(left: 15.0, bottom: 13),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "Price",
                     style: TextStyle(
                       color: Colors.white,
@@ -287,10 +311,10 @@ Widget _buildReservationBox() {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
-                    "2\$/h",
-                    style: TextStyle(
+                    price,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,
                     ),
