@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'search_page.dart';
+import 'book_slot_page.dart'; // Add this import
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -35,7 +36,6 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            // NAVIGATION LABELS
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -49,7 +49,6 @@ class HomePage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 40),
-            // SEARCH BAR
             Container(
               height: 50,
               decoration: BoxDecoration(
@@ -66,14 +65,11 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40),
-            // MY VEHICLE BOX
             _vehicleBox(screenHeight),
-
             const SizedBox(height: 30),
-            _reservationBox(),
-
+            _reservationBox(context),
             const Padding(
-              padding: EdgeInsets.only(top: 20,bottom:1,right:90),
+              padding: EdgeInsets.only(top: 20, bottom: 1, right: 90),
               child: Text(
                 "Nearest parking space !",
                 style: TextStyle(
@@ -84,13 +80,10 @@ class HomePage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-
             const SizedBox(height: 15),
-            _buildReservationBox("Title 1", "Location 1", "Distance 1", "Price 1"),
+            _buildReservationBox(context, "Title 1", "Location 1", "Distance 1", "Price 1"),
             const SizedBox(height: 15),
-            _buildReservationBox("Title 2", "Location 2", "Distance 2", "Price 2"),
-            const SizedBox(height: 15),
-
+            _buildReservationBox(context, "Title 2", "Location 2", "Distance 2", "Price 2"),
             const SizedBox(height: 20),
           ],
         ),
@@ -195,7 +188,7 @@ Widget _vehicleBox(double screenHeight) {
   );
 }
 
-Widget _reservationBox() {
+Widget _reservationBox(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(top: 1, bottom: 1),
     child: Column(
@@ -210,15 +203,13 @@ Widget _reservationBox() {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 15),
-        _buildReservationBox("Title", "Location", "Distance", "Price"),
+        _buildReservationBox(context, "Title", "Location", "Distance", "Price"),
       ],
     ),
   );
-
 }
 
-
-Widget _buildReservationBox(String title, String location, String distance, String price) {
+Widget _buildReservationBox(BuildContext context, String title, String location, String distance, String price) {
   return Container(
     width: double.infinity,
     decoration: BoxDecoration(
@@ -325,7 +316,12 @@ Widget _buildReservationBox(String title, String location, String distance, Stri
             Padding(
               padding: const EdgeInsets.only(right: 15.0, bottom: 13),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const BookSlotPage()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFabdbe3),
                   shape: RoundedRectangleBorder(
