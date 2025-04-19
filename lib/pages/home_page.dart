@@ -99,7 +99,11 @@ class HomePage extends StatelessWidget {
             children: [
               IconButton(icon: const Icon(Icons.home, color: Colors.white, size: 30), onPressed: () {}),
               IconButton(icon: const Icon(Icons.directions_car, color: Colors.white, size: 30), onPressed: () {}),
-              IconButton(icon: const Icon(Icons.search, color: Colors.white, size: 30), onPressed: () {}),
+              IconButton(icon: const Icon(Icons.search, color: Colors.white, size: 30), onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchPage()),
+                );}),
             ],
           ),
         ),
