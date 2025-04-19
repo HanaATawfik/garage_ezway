@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
 
             const SizedBox(height: 15),
             _buildReservationBox("Title 1", "Location 1", "Distance 1", "Price 1"),
-           const SizedBox(height: 15),
+            const SizedBox(height: 15),
             _buildReservationBox("Title 2", "Location 2", "Distance 2", "Price 2"),
             const SizedBox(height: 15),
 
@@ -197,22 +197,22 @@ Widget _vehicleBox(double screenHeight) {
 
 Widget _reservationBox() {
   return Padding(
-  padding: const EdgeInsets.only(top: 1, bottom: 1),
-  child: Column(
-  children: [
-  const Text(
-  "Reserve your favorite spot again!",
-  style: TextStyle(
-  color: Colors.white,
-  fontSize: 19,
-  fontWeight: FontWeight.bold,
-  ),
-  textAlign: TextAlign.center,
-  ),
-  const SizedBox(height: 15),
-  _buildReservationBox("Title", "Location", "Distance", "Price"),
-  ],
-  ),
+    padding: const EdgeInsets.only(top: 1, bottom: 1),
+    child: Column(
+      children: [
+        const Text(
+          "Reserve your favorite spot again!",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 15),
+        _buildReservationBox("Title", "Location", "Distance", "Price"),
+      ],
+    ),
   );
 
 }
