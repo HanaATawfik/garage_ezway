@@ -323,8 +323,7 @@ Widget _buildReservationBox(BuildContext context, String title, String location,
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const BookSlotPage()),
-                  );
+                    MaterialPageRoute(builder: (context) => BookSlotPage()),);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFabdbe3),
