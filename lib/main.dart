@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 
+import 'pages/payment_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -11,12 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Parking App',
+      debugShowCheckedModeBanner: false,
+      title: 'Garage EZway',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.teal,
+        fontFamily: 'Roboto', // Optional if you want to match font style
       ),
-      home:HomePage(),
+      home: const PaymentPage(), // 👈 Set PaymentPage here
     );
   }
 }
