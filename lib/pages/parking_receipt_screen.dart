@@ -87,3 +87,33 @@ class _TabItem extends StatelessWidget {
     );
   }
 }
+class _ReceiptBody extends StatelessWidget {
+  const _ReceiptBody();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: CircleAvatar(
+              backgroundColor: Colors.grey[700],
+              child: Icon(Icons.chevron_left, color: Colors.white),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Text('TICKET',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              )),
+          const SizedBox(height: 20),
+          _ReceiptCard(),
+        ],
+      ),
+    );
+  }
+}
