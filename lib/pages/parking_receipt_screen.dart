@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ParkingReceiptScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Parking Receipt")),
+      body: Center(
+        child: Text("This is your parking receipt."),
+      ),
+    );
+  }
+}
+class ParkingReceiptScreen extends StatelessWidget {
   const ParkingReceiptScreen({Key? key}) : super(key: key);
 
   @override
