@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'Parking_Receipt_Screen.dart';
+
 
                                                             class BookSlotPage extends StatefulWidget {
                                                               @override
