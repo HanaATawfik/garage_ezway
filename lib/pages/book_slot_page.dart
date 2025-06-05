@@ -236,13 +236,21 @@ import 'Parking_Receipt_Screen.dart';
 
                                                                       // Book Button
                                                                       ElevatedButton(
-                                                                        onPressed: () {},
-                                                                        child: Text("BOOK SELECTION"),
+                                                                        onPressed: () {
+                                                                          Navigator.push(
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                              builder: (context) => ParkingReceiptScreen(), // Make sure this class exists
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                        child: Text("BOOK SLOT"),
                                                                         style: ElevatedButton.styleFrom(
                                                                           backgroundColor: Color(0xFF46B1A1),
                                                                           minimumSize: Size(double.infinity, 50),
                                                                         ),
                                                                       ),
+
                                                                     ],
                                                                   ),
                                                                 );
