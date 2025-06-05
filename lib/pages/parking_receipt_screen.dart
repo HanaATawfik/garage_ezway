@@ -172,3 +172,21 @@ class _ReceiptCard extends StatelessWidget {
     );
   }
 }
+class _BottomPayButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.teal,
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+        onPressed: () {},
+        icon: const Icon(Icons.arrow_forward, color: Colors.white),
+        label: const Text("PAY TICKET", style: TextStyle(color: Colors.white, fontSize: 16)),
+      ),
+    );
+  }
+}
