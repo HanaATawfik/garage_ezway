@@ -219,10 +219,25 @@ import 'package:flutter/material.dart';
                       ElevatedButton(
                         onPressed: hasSelectedSlot
                             ? () {
+                                // Get the selected slot data
+                                Map<String, dynamic>? selectedSlot;
+
+                                for (var space in spaces) {
+                                  if (space["status"] == "Selected") {
+                                    selectedSlot = space;
+                                    break;
+                                  }
+                                }
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ParkingReceiptScreen(),
+                                    builder: (context) => ParkingReceiptScreen(
+                                      mallName: "Mall Parking",
+                                      floor: currentFloor,
+                                      slotId: selectedSlot?["id"] ?? "",
+                                      startTime: DateTime.now(),
+                                    ),
                                   ),
                                 );
                               }
