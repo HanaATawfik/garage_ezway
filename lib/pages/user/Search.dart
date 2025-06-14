@@ -3,8 +3,7 @@ import 'book_slot_page.dart' as book_slot_page;
 import 'book_slot_page.dart';
                         import 'book_slot_moa.dart';
                         import 'book_slot_cs.dart';
-                        import 'book_slot_cfc.dart';
-                        import 'home_page.dart';
+import 'book_slot_cfc.dart';                        import 'home_page.dart';
 
 
                         class SearchMapPage extends StatelessWidget {

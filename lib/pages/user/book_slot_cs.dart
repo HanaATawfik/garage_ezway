@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
-import 'Parking_Receipt_Screen.dart';
-import 'active_session.dart';  // Added import for ActiveSessionPage
+import 'active_session.dart'; // Import for ActiveSessionPage
 
-class BookSlotPage extends StatefulWidget {
+class BookSlotCSPage extends StatefulWidget {
+  const BookSlotCSPage({super.key});
+
   @override
-  _BookSlotPageState createState() => _BookSlotPageState();
+  _BookSlotCSPageState createState() => _BookSlotCSPageState();
 }
 
-class _BookSlotPageState extends State<BookSlotPage> {
+class _BookSlotCSPageState extends State<BookSlotCSPage> {
   int currentFloor = 1;
   String? selectedSlotId;
   int? selectedFloor;
 
-  // First floor spaces - one available, one reserved, one occupied
+  // First floor spaces - 3 slots with varied statuses
   final List<Map<String, dynamic>> firstFloorSpaces = [
     {"id": "A1", "status": "Available", "row": "A"},
-    {"id": "A2", "status": "Reserved", "row": "A"},
-    {"id": "A3", "status": "Occupied", "row": "A"},
+    {"id": "A2", "status": "Occupied", "row": "A"},
+    {"id": "A3", "status": "Reserved", "row": "A"},
   ];
 
-  // Second floor spaces - only row D with 2 slots
+  // Second floor spaces - 2 slots with varied statuses
   final List<Map<String, dynamic>> secondFloorSpaces = [
     {"id": "D1", "status": "Available", "row": "D"},
-    {"id": "D2", "status": "Reserved", "row": "D"},
+    {"id": "D2", "status": "Available", "row": "D"},
   ];
 
   void toggleSlot(String slotId) {
@@ -230,12 +231,12 @@ class _MainContent extends StatelessWidget {
                       }
                     }
 
-                    // Navigate to ActiveSessionPage instead of ParkingReceiptScreen
+                    // Navigate to ActiveSessionPage
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => ActiveSessionPage(
-                          mallName: "Mall Parking",
+                          mallName: "City Stars",
                           floor: currentFloor,
                           slotId: selectedSlot?["id"] ?? "",
                         ),
