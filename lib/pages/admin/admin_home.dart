@@ -8,6 +8,7 @@ import 'dart:io';
     import 'admin_profile.dart';
     import 'daily_earnings.dart';
     import 'parking.dart';
+    import 'admin_dashboard.dart'; // Added import for admin dashboard
     import '../user/login.dart'; // Updated path to the login screen
 
     class AdminHomePage extends StatefulWidget {
@@ -87,6 +88,7 @@ import 'dart:io';
                 _buildDrawerItem(Icons.home, 'Home', context),
                 _buildDrawerItem(Icons.local_parking, 'Parking', context),
                 _buildDrawerItem(Icons.attach_money, 'Daily Earning', context),
+                _buildDrawerItem(Icons.people, 'User History', context), // Added new menu item
                 Spacer(),
                 _buildLogoutButton(context),
                 SizedBox(height: 20),
@@ -205,6 +207,11 @@ import 'dart:io';
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => EarningsPage()),
+              );
+            } else if (title == 'User History') {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => AdminDashboard()),
               );
             }
           },
